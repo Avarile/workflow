@@ -1,0 +1,83 @@
+622298a4ba4d05bc9ecc37e9  Avarile
+622298baba4d05bc9ecc37eb  Email
+622298c9ba4d05bc9ecc37ed  Ana
+622298e8ba4d05bc9ecc37ef  Aure
+### Test api
+
+GET http://localhost:4000/
+
+
+
+
+### Create user
+
+POST http://localhost:4000/users
+Content-Type: application/json
+
+{
+  "name" : "Aqiang",
+  "email": "Aqiang@gmail.com",
+  "dob": "1984-01-12",
+  "phone" : 123123123
+}
+
+
+### Delete user
+DELETE http://localhost:4000/users/6225773c23aa5efecd0aca49
+
+
+
+### FindAll user
+GET http://localhost:4000/users
+
+
+
+### FindoneUser
+GET http://localhost:4000/users/6222a1b2fee761dacb825ede
+
+
+### updateUser
+PUT http://localhost:4000/users/622298baba4d05bc9ecc37eb
+Content-Type: application/json
+
+{
+  "name":"Emily",
+  "email": "Emily1@gmail.com",
+  "dob":"14/4/1987",
+  "phone": 18723698172639
+
+}
+
+
+### Create book
+POST http://localhost:4000/books
+Content-Type: application/json
+
+{
+  "user": "622298c9ba4d05bc9ecc37ed",
+  "name": "day by day ",
+  "auther": "Auther3",
+  "category": "Horror"
+}
+
+### Find all books
+GET http://localhost:4000/books
+
+
+### updateBook
+PUT http://localhost:4000/books/book_l4ptqntw04unu7cb
+Content-Type: application/json
+
+{
+  "user": "622298a4ba4d05bc9ecc37e9",
+  "name": "I wanna be a Programmer",
+  "auther": "Auther4",
+  "category": "Drama",
+  "bookId":"book_l4ptqntw04unu7cb"
+}
+
+### FindoneBook
+GET http://localhost:4000/books/book_2akrd4h51bbnwij2
+
+### Delete Book
+DELETE http://localhost:4000/books/book_2akrd4h51bbnwij2
