@@ -3,19 +3,19 @@
 class Storage {
   // static store = process.env.NODE_ENV === "development" ? window.localStorage : window.sessionStorage // chose cache methods according to the env
 
-  static cacheStore = window.sessionStorage;
+  static cacheStore = window.sessionStorage
 
   // start of the tool functions
   /**
-   * check if the cachedData exist
+ n * check if the cachedData exist
    * @param key
    * @returns {boolean}
    */
   static existCachedData(key: string) {
     if (this.cacheStore.getItem(key) !== null) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
   }
 
@@ -24,11 +24,11 @@ class Storage {
    * @param value
    * @returns boolean
    */
-  private static isVoid(value: any) {
+  static isVoid(value: any) {
     if (value === undefined || value === null || value === "") {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
   }
 
@@ -39,9 +39,9 @@ class Storage {
    */
   static serialize(value: any) {
     if (typeof value === "string") {
-      return value;
+      return value
     } else {
-      return JSON.stringify(value);
+      return JSON.stringify(value)
     }
   }
 
@@ -52,14 +52,12 @@ class Storage {
    */
   static deserialize(cachedValue: string | null) {
     if (typeof cachedValue !== "string") {
-      return null;
+      return null
     } else {
       try {
-        return JSON.parse(cachedValue);
+        return JSON.parse(cachedValue)
       } catch (error) {
-        throw new Error(
-          "Unexpected Error during deserialization from session cache"
-        );
+        throw new Error("Unexpected Error during deserialization from session cache")
       }
     }
   }
@@ -71,8 +69,8 @@ class Storage {
    * @returns {string | null}
    */
   static getCachedDate(key: string) {
-    const value = this.cacheStore.getItem(key);
-    return this.deserialize(value);
+    const value = this.cacheStore.getItem(key)
+    return this.deserialize(value)
   }
 
   /**
@@ -82,9 +80,9 @@ class Storage {
    */
   static setCacheData(key: string, value: any) {
     if (this.isVoid(value)) {
-      throw new Error("Cannot Cache Invalid Value");
+      throw new Error("Cannot Cache Invalid Value")
     } else {
-      this.cacheStore.setItem(key, this.serialize(value));
+      this.cacheStore.setItem(key, this.serialize(value))
     }
   }
 
@@ -95,10 +93,10 @@ class Storage {
   static setMultipleCacheData(...args: []) {
     try {
       args.map((item: { key: any; value: any }) => {
-        this.setCacheData(item.key, item.value);
-      });
+        this.setCacheData(item.key, item.value)
+      })
     } catch (error) {
-      throw new Error("Cannot Cache Invalid Value");
+      throw new Error("Cannot Cache Invalid Value")
     }
   }
 
@@ -107,7 +105,7 @@ class Storage {
    * @param key
    */
   static removeCachedData(key: string) {
-    this.cacheStore.removeItem(key);
+    this.cacheStore.removeItem(key)
   }
 
   /**
@@ -116,15 +114,15 @@ class Storage {
    */
   static removeMultipleCachedData(...keys: string[]) {
     keys.map((key) => {
-      this.cacheStore.removeItem(key);
-    });
+      this.cacheStore.removeItem(key)
+    })
   }
 
   /**
    * purge the currentSession
    */
   static purge() {
-    this.cacheStore.clear();
+    this.cacheStore.clear()
   }
 
   /**
@@ -134,9 +132,9 @@ class Storage {
    * @returns {string}
    */
   static setValueDependingOnCacheStates(key: any, value: any) {
-    const cachedValue = this.serialize(this.getCachedDate(key));
-    return this.isVoid(cachedValue) ? value : cachedValue; // if cachedValue is void then return the value passed in.
+    const cachedValue = this.serialize(this.getCachedDate(key))
+    return this.isVoid(cachedValue) ? value : cachedValue // if cachedValue is void then return the value passed in.
   }
 }
 
-export default Storage;
+export default Storage

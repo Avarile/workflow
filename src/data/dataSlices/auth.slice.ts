@@ -1,25 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Storage from "../dataStore/cache";
 
-export const loginSlice = createSlice({
-  name: "login",
+export const authSlice = createSlice({
+  name: "auth",
   initialState: {
-    username: "",
-    password: "",
-    email: "",
-    token: "",
+    user: {
+      username: "",
+      email: "",
+      password: "",
+      token: "",
+    },
     error: "",
   },
   reducers: {
     setUser: (state, action) => {
       return {
         ...state,
-        username: action.payload.username,
-        email: action.payload.email,
-        password: action.payload.password,
+        user: action.payload,
       };
     },
 
     setToken: (state, action) => {
+      Storage.setCacheData("TOKEN", action.payload.token);
       return {
         ...state,
         token: action.payload.token,
@@ -36,6 +38,6 @@ export const loginSlice = createSlice({
   },
 });
 
-export const { setError, setUser, setToken } = loginSlice.actions;
-export const selectLogin = (state: any) => state;
-export default loginSlice.reducer;
+export const { setError, setUser, setToken } = authSlice.actions;
+export const selectAuth = (state: any) => state;
+export default authSlice.reducer;
