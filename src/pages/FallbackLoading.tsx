@@ -1,6 +1,9 @@
 import React from "react";
-import Spinner from "react-bootstrap/Spinner";
+import "antd/dist/antd.css";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const FallbackLoading = () => {
-  return <Spinner animation="border" />;
+  const icon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+  return <Spin indicator={icon} />;
 };
