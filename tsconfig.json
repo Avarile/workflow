@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "experimentalDecorators": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,7 +19,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@SRC/*": ["./src/*"],
+      "@DATA/*": ["./src/data/*"],
+      "@COMMON/*": ["./src/common/*"],
+      "@PAGES/*":["./src/pages/*"]
+    },
   },
   "include": [
     "src"
