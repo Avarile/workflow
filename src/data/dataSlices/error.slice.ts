@@ -1,36 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 export const errorSlice = createSlice({
   name: "error",
   initialState: {
-    successs: {},
-    warning: {},
-    error: {},
+    notification: {
+      type: "success",
+      message: "none",
+    },
   },
   reducers: {
-    setSuccess: (state, action) => {
+    setNotification: (state, action) => {
       return {
         ...state,
-        successs: action.payload,
-      };
-    },
-
-    setWarning: (state, action) => {
-      return {
-        ...state,
-        warning: action.payload,
-      };
-    },
-
-    setError: (state, action) => {
-      return {
-        ...state,
-        error: action.payload,
-      };
+        notification: action.payload,
+      }
     },
   },
-});
+})
 
-export const { setError, setWarning, setSuccess } = errorSlice.actions;
-export const selectError = (state: any) => state;
-export default errorSlice.reducer;
+export const { setNotification } = errorSlice.actions
+export const selectError = (state: any) => state
+export default errorSlice.reducer

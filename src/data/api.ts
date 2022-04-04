@@ -7,7 +7,7 @@ import Storage from "@DATA/dataStore/cache";
 const { NODE_ENV } = process.env; // retrive env values from process.env
 //
 
-export class Request {
+class Request {
   axiosInstance: any;
 
   constructor() {
