@@ -1,9 +1,9 @@
-import React from "react";
-import "antd/dist/antd.css";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import React from "react"
+import "antd/dist/antd.css"
+import { Spin } from "antd"
+import { LoadingOutlined, Loading3QuartersOutlined } from "@ant-design/icons"
 
 export const FallbackLoading = () => {
-  const icon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-  return <Spin indicator={icon} />;
-};
+  const icon = <Loading3QuartersOutlined style={{ fontSize: 24 }} spin />
+  return <Spin indicator={icon} />
+}

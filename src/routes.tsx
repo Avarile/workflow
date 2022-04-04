@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Navigate, useLocation, RouteObject } from "react-router-dom"
 import { Login, MainEntrance, DashboardMain, OrderManagment, WareHousing } from "./pages"
 import { FallbackLoading } from "./pages/FallbackLoading"
@@ -19,7 +19,11 @@ const LazyLoadingWrapper = (Child: ChildComponentType, Fallback?: FallbackCompon
 // tool functions definition
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
   // Storage.getCachedDate("USER")
-  const [user, setUser] = React.useState(Storage.getCachedDate("USER")) 
+  const [user, setUser] = React.useState(Storage.getCachedDate("USER"))
+  useEffect(() => {
+    setUser(Storage.getCachedDate("USER"))
+    console.log(user)
+  }, [Storage])
 
   let location = useLocation()
 
@@ -34,15 +38,19 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
 export const routes: RouteObject[] = [
   {
     path: "/",
-    element: LazyLoadingWrapper(Login),
+    element: <Login />,
   },
   {
     path: "/login",
-    element: LazyLoadingWrapper(Login),
+    element: <Login />,
   },
   {
     path: "/mainentrance",
-    element: <RequireAuth>{LazyLoadingWrapper(MainEntrance)}</RequireAuth>,
+    element: (
+      <RequireAuth>
+        <MainEntrance />
+      </RequireAuth>
+    ),
     children: [
       {
         index: true,

@@ -9,7 +9,7 @@ const Login = () => {
   const fakeLoginApi = (values: { username: string; password: string }) => {
     setTimeout(() => {
       if (values.username === "Avarile" && values.password === "Avarile19840123") {
-        Storage.setCacheData("TOKEN", "AvarileToken")
+        Storage.setCacheData("USER", values)
         Notification({ type: "success", message: "Login Success!" })
         return true
       } else {
@@ -86,7 +86,7 @@ const Login = () => {
             span: 16,
           }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Click to Login
           </Button>
         </Form.Item>
       </Form>
